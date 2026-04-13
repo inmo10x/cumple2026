@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Celebración de Cumpleaños</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 600px;
+            background: linear-gradient(135deg, #ffffff 0%, #f9f7f4 100%);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1a237e 0%, #4a148c 100%);
+            padding: 60px 40px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .sparkles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: twinkle 2s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+
+        .names {
+            font-family: 'Playfair Display', serif;
+            font-size: 48px;
+            color: white;
+            font-weight: 700;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+            animation: slideDown 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .ampersand {
+            color: #ffd700;
+            margin: 0 8px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+            animation: slideDown 0.8s ease-out 0.3s both;
+        }
+
+        .content {
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .celebration-text {
+            font-size: 20px;
+            color: #1a237e;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .celebration-text em {
+            color: #ffd700;
+            font-style: italic;
+            font-weight: 500;
+        }
+
+        .details {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.05) 0%, rgba(74, 20, 140, 0.05) 100%);
+            border-left: 4px solid #ffd700;
+            padding: 30px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+            animation: slideUp 0.8s ease-out 0.5s both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .detail-item {
+            margin-bottom: 20px;
+            font-size: 16px;
+            color: #34495e;
+        }
+
+        .detail-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .label {
+            font-weight: 700;
+            color: #1a237e;
+            display: block;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .value {
+            font-size: 18px;
+            color: #4a148c;
+            font-weight: 400;
+        }
+
+        .rsvp {
+            margin-top: 40px;
+            font-size: 14px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .footer-decoration {
+            height: 80px;
+            background: linear-gradient(to top, #1a237e, transparent);
+            position: relative;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .names {
+                font-size: 36px;
+            }
+
+            .content {
+                padding: 35px 25px;
+            }
+
+            .details {
+                padding: 25px;
+            }
+
+            .celebration-text {
+                font-size: 18px;
+            }
+        }
+
+        .confirmation {
+            background: linear-gradient(135deg, rgba(26, 35, 126, 0.08) 0%, rgba(74, 20, 140, 0.08) 100%);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 30px;
+            animation: slideUp 0.8s ease-out 0.6s both;
+        }
+
+        .confirmation-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            color: #1a237e;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+        }
+
+        .btn-no {
+            background: transparent;
+            color: #4a148c;
+            border: 2px solid #4a148c;
+        }
+
+        .btn-no:hover {
+            background: rgba(74, 20, 140, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .confirmation-message {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #4a148c;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 0.6s ease-out 0.8s both;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <div class="sparkles" id="sparkles"></div>
+            <div class="names">
+                Karim <span class="ampersand">&</span> Claudia
+            </div>
+            <div class="subtitle">CELEBRAN SUS CUMPLEAÑOS</div>
+        </div>
+
+        <div class="content">
+            <div class="celebration-text">
+                Te invitamos a compartir una noche especial de <em>música, buena compañía y diversión</em>
+            </div>
+
+            <div class="details">
+                <div class="detail-item">
+                    <span class="label">📅 Fecha</span>
+                    <span class="value">18 de Abril de 2025</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">🕖 Hora</span>
+                    <span class="value">19:30 horas</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">📍 Lugar</span>
+                    <span class="value">Club House<br>Av. Central 765, Rancagua</span>
+                </div>
+            </div>
+
+            <div class="confirmation">
+                <div class="confirmation-title">¿Confirmas tu asistencia?</div>
+                <div class="button-group">
+                    <button class="btn btn-yes" onclick="confirmarAsistencia()">¡Sí, voy!</button>
+                    <button class="btn btn-no" onclick="noAsistencia()">No podré asistir</button>
+                </div>
+                <div class="confirmation-message" id="message"></div>
+            </div>
+        </div>
+
+        <div class="footer-decoration"></div>
+    </div>
+
+    <script>
+        // Crear sparkles en el header
+        const sparklesContainer = document.getElementById('sparkles');
+        for (let i = 0; i < 15; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            sparkle.style.left = Math.random() * 100 + '%';
+            sparkle.style.top = Math.random() * 100 + '%';
+            sparkle.style.animationDelay = Math.random() * 2 + 's';
+            sparklesContainer.appendChild(sparkle);
+        }
+
+        function confirmarAsistencia() {
+            const message = document.getElementById('message');
+            message.textContent = '✓ ¡Gracias por confirmar! Nos vemos el 18 de abril. 🎉';
+            message.style.color = '#ffd700';
+            message.style.opacity = '1';
+            
+            // Enviar a WhatsApp
+            const numeroWhatsApp = '56992690934';
+            const mensajeWhatsApp = encodeURIComponent('¡Hola! 🎉 Confirmo que asistiré a la celebración de cumpleaños de Karim y Claudia el 18 de abril a las 19:30 en Club House, Av. Central 765, Rancagua. ¡Hasta pronto!');
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeWhatsApp}`, '_blank');
+        }
+
+        function noAsistencia() {
+            const message = document.getElementById('message');
+            message.textContent = 'Entendemos, ¡te echaremos de menos! 😔';
+            message.style.color = '#4a148c';
+            message.style.opacity = '1';
+            
+            // Enviar a WhatsApp
+            const numeroWhatsApp = '56992690934';
+            const mensajeWhatsApp = encodeURIComponent('Hola, lamentablemente no podré asistir a la celebración de cumpleaños de Karim y Claudia el 18 de abril. ¡Gracias por la invitación!');
+            window.open(`https://wa.me/${numeroWhatsApp}?text=${mensajeWhatsApp}`, '_blank');
+        }
+    </script>
+</body>
+</html>
